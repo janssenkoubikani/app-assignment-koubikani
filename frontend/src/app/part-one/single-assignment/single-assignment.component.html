@@ -1,0 +1,21 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading">
+  <button class="btn btn-link" (click)="onGoBack()"><< Retour</button>
+  <div class="single-assignment-pane">
+    <img [src]="assignment?.imageUrl" alt="">
+    <div class="single-assignment-info">
+      <h1>{{ assignment?.nom }}</h1>
+      <h2 class="single-assignment-price"> A rendre le :{{ assignment?.dateRendu | date:'dd/MM/yyyy'}}</h2>
+      <h3>Attribuer à : {{ assignment?.auteur }}</h3>
+      <p>Remarques : {{ assignment?.remarques }}</p>
+      
+      <div *ngIf="assignment.note" >
+        <h3>Note : {{ assignment?.note }}/20</h3>
+        <p style="color: fuchsia;">Assignment rendu</p>
+      </div>
+      <button class="btn btn-success m-1" (click)="onModify()" [disabled]="part >= 3 && userId !== assignment?.userId">Modifier</button>
+      <button class="btn btn-danger m-1" (click)="onDelete()" [disabled]="part >= 3 && userId !== assignment?.userId">Supprimer</button>
+      <button *ngIf="!assignment.note" class="btn btn-primary m-1" (click)="onNote()" [disabled]="part >= 3 && userId !== assignment?.userId">Noter</button>
+    </div>
+  </div>
+</div>

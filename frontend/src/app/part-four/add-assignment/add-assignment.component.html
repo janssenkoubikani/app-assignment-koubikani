@@ -1,0 +1,37 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading" class="col-sm-6 offset-sm-3 mt-2">
+  <form [formGroup]="assignmentForm">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" placeholder="Nom du devoir" id="nom" formControlName="nom" class="form-control">
+    </div>
+   
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Date de rendu" formControlName="dateRendu">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="form-group">
+      <label for="auteur">Auteur</label>
+      <input type="text" placeholder="Nom de l'étudiant" id="auteur" formControlName="auteur" class="form-control">
+    </div>
+    <button class="btn btn-success" type="button" (click)="filePicker.click()">Insérer image de la matière</button>
+    <input type="file" #filePicker (change)="onImagePick($event)">
+    <div class="image-preview" *ngIf="imagePreview">
+      <img [src]="imagePreview" alt="">
+    </div> 
+    <div class="form-group">
+      <label for="remarques">Remarques</label>
+      <textarea name="remarques"
+                id="remarques"
+                cols="30" rows="4"
+                class="form-control"
+                formControlName="remarques"
+                placeholder="Décrivez vos remarques"></textarea>
+    </div>
+    <button class="btn btn-primary" (click)="onSubmit()" [disabled]="assignmentForm.invalid">Valider</button>
+    <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
+</div>

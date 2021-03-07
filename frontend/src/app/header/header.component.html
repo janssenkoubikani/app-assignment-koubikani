@@ -1,0 +1,32 @@
+<header>
+  <h1 class="header-title">
+    ASSIGNMENTS
+  </h1>
+  <ul class="header-navigation">
+    <li class="header-navigation-item" *ngIf="part === 1 || (part >= 3 && isAuth)">
+      <a class="header-link" routerLink="/{{ partString }}/all-stuff" routerLinkActive="active">LISTE DES ASSIGNMENTS</a>
+    </li>
+    <li class="header-navigation-item" *ngIf="part === 1 || (part >= 3 && isAuth)">
+      <a class="header-link" routerLink="/{{ partString }}/new-assignment" routerLinkActive="active">AJOUTER ASSIGNMENT</a>
+    </li>
+    <li class="header-navigation-item" *ngIf="(part >= 3 && isAuth)">
+      <a class="header-link" style="cursor: pointer" (click)="onLogout()">DECONNEXION</a>
+    </li>
+    <li class="header-navigation-item" *ngIf="(part >= 3 && !isAuth)">
+      <a class="header-link" routerLink="/{{ partString }}/auth/login" routerLinkActive="active">CONNEXION</a>
+    </li>
+    <li class="header-navigation-item" *ngIf="(part >= 3 && !isAuth)">
+      <a class="header-link" routerLink="/{{ partString }}/auth/signup" routerLinkActive="active">INSCRIPTION</a>
+    </li>
+  </ul>
+  <ul class="header-navigation nav-end">
+    <li class="header-navigation-item font-italic">
+      <a class="header-link" style="cursor:pointer" (click)="onBackToParts()">ACCUEIL</a>
+    </li>
+  </ul>
+</header>
+<div class="hero-image" *ngIf="mode === 'list'">
+  <h2 class="hero-text">
+   POUR MIEUX GERER VOS ASSIGNMENTS
+  </h2>
+</div>

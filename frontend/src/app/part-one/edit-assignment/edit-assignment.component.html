@@ -1,0 +1,34 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading" class="col-sm-6 offset-sm-3 mt-2">
+  <form [formGroup]="assignmentForm">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" placeholder="nom de la matière" id="nom" formControlName="nom" class="form-control">
+    </div>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Date de rendu" id="dateRendu" formControlName="dateRendu">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div class="form-group">
+      <label for="auteur">Auteur</label>
+      <input type="text" placeholder="nom etudiant" id="nom" formControlName="auteur" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="remarques">Remarques</label>
+      <textarea name="remarques"
+                id="remarques"
+                cols="30" rows="7"
+                class="form-control"
+                formControlName="remarques"
+                placeholder="Décrivez votre remarques"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="imageUrl">URL de l'image</label>
+      <input type="text" placeholder="http://..." id="imageUrl" formControlName="imageUrl" class="form-control">
+    </div>
+    <button class="btn btn-success" (click)="onSubmit()" [disabled]="assignmentForm.invalid">Valider</button>
+    <p class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
+</div>
